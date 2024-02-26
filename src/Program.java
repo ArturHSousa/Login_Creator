@@ -18,7 +18,7 @@ public class Program {
             Exception_dados.ExcepitonNome(dados.getNome());
         }
         catch (Exception_dados.ExcepitonNomeInvalido e){
-            System.out.println("Use apenas letras para criar seu nome de usuário");
+            System.out.println("Use apenas letras para criar seu nome de usuário!");
             return;
         }
 
@@ -29,14 +29,26 @@ public class Program {
             Exception_dados.ExcepitonEmail(dados.getEmail());
         }
         catch (Exception_dados.ExcepitonEmailInvalido e){
-            System.out.println("Não se esqueça de usar seu @gmail ou @hotmail ou outro webmail ");
-            System.out.println("Não use caracteres especiais");
+            System.out.println("Não se esqueça de usar seu @gmail ou @hotmail ou outro webmail!");
+            System.out.println("Não use caracteres especiais!");
             return;
         }
 
-        out.print("Digite sua senha: ");
-        dados.setSenha(sc.nextLine());
-        out.println();
+        try {
+            out.print("Digite sua senha: ");
+            dados.setSenha(sc.nextLine());
+            out.println();
+            Exception_dados.ExceptionSenha(dados.getSenha());
+            Exception_dados.ExceptionLetra(dados.getSenha());
+        }
+        catch (Exception_dados.ExceptionSenhaInvalida e){
+            System.out.println("Não use espaços em sua senha!");
+            return;
+        }
+        catch (Exception_dados.ExceptionLetraMaiuscula e){
+            System.out.println("Senha fraca, sua senha deve contar ao menos uma letra maiúscula!");
+            return;
+        }
 
         out.println("_____ LOGIN CRIADO _____");
         out.println("Nome: "+ dados.getNome());
