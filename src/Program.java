@@ -11,10 +11,10 @@ public class Program {
         out.println("_____ CRIAÇÃO DE LOGIN _____");
         out.println();
 
-        out.print("Digite seu nome de usuário: ");
-        dados.setNome(sc.nextLine());
-        out.println();
         try{
+            out.print("Digite seu nome de usuário: ");
+            dados.setNome(sc.nextLine());
+            out.println();
             Exception_dados.ExcepitonNome(dados.getNome());
         }
         catch (Exception_dados.ExcepitonNomeInvalido e){
@@ -22,9 +22,17 @@ public class Program {
             return;
         }
 
-        out.print("Digite seu email: ");
-        dados.setEmail(sc.nextLine());
-        out.println();
+        try {
+            out.print("Digite seu email: ");
+            dados.setEmail(sc.nextLine());
+            out.println();
+            Exception_dados.ExcepitonEmail(dados.getEmail());
+        }
+        catch (Exception_dados.ExcepitonEmailInvalido e){
+            System.out.println("Não se esqueça de usar seu @gmail ou @hotmail ou outro webmail ");
+            System.out.println("Não use caracteres especiais");
+            return;
+        }
 
         out.print("Digite sua senha: ");
         dados.setSenha(sc.nextLine());
