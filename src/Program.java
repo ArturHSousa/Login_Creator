@@ -63,16 +63,18 @@ public class Program {
     }
 
     public static boolean ValidarSenha(String senha)
-    {
+    {   //Regex é um import do java para vilidação
+        //Regex valida a senha
         String regex = "^(?=.*[0-9])"
                 + "(?=.*[a-z])(?=.*[A-Z])"
                 + "(?=\\S+$).{8,20}$";
+        //"Pattern" serve para compilção do Regex
         Pattern p = Pattern.compile(regex);
 
         if (senha == null) {
             return false;
         }
-
+        //"Matcher" para o Regex corresponder a classe senha
         Matcher m = p.matcher(senha);
         return m.matches();
     }

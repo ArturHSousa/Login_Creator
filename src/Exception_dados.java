@@ -5,8 +5,6 @@ public class Exception_dados {
     private String nome;
     private String email;
     private String senha;
-    private boolean Testesenha;
-
 
 
     //Nome
@@ -73,14 +71,6 @@ public class Exception_dados {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public boolean isTestesenha() {
-        return Testesenha;
-    }
-
-    public void setTestesenha(boolean testesenha) {
-        Testesenha = testesenha;
     }
 
 }
