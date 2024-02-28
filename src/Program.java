@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 import static java.lang.System.*;
 
@@ -39,23 +42,39 @@ public class Program {
             dados.setSenha(sc.nextLine());
             out.println();
             Exception_dados.ExceptionSenha(dados.getSenha());
-            Exception_dados.ExceptionLetra(dados.getSenha());
         }
         catch (Exception_dados.ExceptionSenhaInvalida e){
             System.out.println("Não use espaços em sua senha!");
             return;
         }
-        catch (Exception_dados.ExceptionLetraMaiuscula e){
-            System.out.println("Senha fraca, sua senha deve contar ao menos uma letra maiúscula!");
-            return;
+
+        if(ValidarSenha(dados.getSenha()) == false) {
+            System.out.println("Senha fraca, sua senha deve conter:");
+            System.out.println("8 digitos");
+            System.out.println("1 letra maiúscula");
+            System.out.println("1 número");
+        }
+        else {
+            out.println("_____ LOGIN CRIADO _____");
+            out.println("Nome: " + dados.getNome());
+            out.println("Email: " + dados.getEmail());
+            out.println("Senha: " + dados.getSenha());
+        }
+    }
+
+    public static boolean ValidarSenha(String senha)
+    {
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=\\S+$).{8,20}$";
+        Pattern p = Pattern.compile(regex);
+
+        if (senha == null) {
+            return false;
         }
 
-        out.println("_____ LOGIN CRIADO _____");
-        out.println("Nome: "+ dados.getNome());
-        out.println("Email: "+ dados.getEmail());
-        out.println("Senha: "+ dados.getSenha());
-
-
+        Matcher m = p.matcher(senha);
+        return m.matches();
     }
 
 }
